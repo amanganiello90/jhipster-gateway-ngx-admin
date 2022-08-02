@@ -5,6 +5,46 @@ This application was generated using JHipster 7.8.1, you can find documentation 
 This is a "gateway" application intended to be part of a microservice architecture, please refer to the [Doing microservices with JHipster][] page of the documentation for more information.
 This application is configured for Service Discovery and Configuration with . On launch, it will refuse to start if it is not able to connect to .
 
+# customizzazioni
+
+Il progetto è stato inizialmente generato con jhipster skippando il client (con auth2 e i18n).
+Lo scopo di questo poc è di innestare **ngx-admin 8.0.0**. Inoltre sono state rimosse dipendenze di test e task (jasmine e karma non usate per assenza di file .spec)
+
+## Feature testate
+
+* client separato dal backend (Per una volta lancia prima **npm install**)
+
+```
+npm run webapp:dev
+
+```
+
+## File aggiunti 
+
+Di seguito le modifiche fatte dopo aver generato e inserita l'app ngx-admin:
+
+* aggiunta src/main/webapp
+* modificato package.json
+* aggiunta .browserslistrc
+* aggiunta e modificato	angular.json
+* aggiunta e modificato tsconfig.app.json
+* aggiunta e modificato tsconfig.json
+* aggiunta tslint.json
+
+## Eventuali aggiunte
+
+Bisognerebbe magari riportare le voci della navbar di jhipster (che interessano), con le eventuali chiamate e pagine (prima del login):
+
+<div align="center">
+		<img src="https://raw.githubusercontent.com/amanganiello90/jhipster-gateway-ngx-admin/feature/ngx/before-login.png">
+</div>
+
+Dopo la login
+
+<div align="center">
+		<img src="https://raw.githubusercontent.com/amanganiello90/jhipster-gateway-ngx-admin/feature/ngx/after-login.png">
+</div>
+
 ## Project Structure
 
 Node is required for generation and recommended for development. `package.json` is always generated for a better development experience with prettier, commit hooks, scripts and so on.
