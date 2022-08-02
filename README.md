@@ -13,18 +13,31 @@ Lo scopo di questo poc è di innestare **ngx-admin 8.0.0**. Inoltre sono state r
 ## Feature testate (npm 6.14.15 e node 14.18.0)
 
 
-* client separato dal backend in modalità serve (Per una volta lancia prima **npm install**)
+* client separato dal backend in modalità serve (Per una volta lancia prima **npm install**):
 
 ```
 npm run webapp:dev
 
 ```
 
-* client+backend in dev serve (Per una volta lancia prima **npm install**)
+* client+backend in dev serve (Per una volta lancia prima **npm install**):
 
 ```
 mvnw
 
+```
+
+* creare jar dev completo sotto la target (Per una volta lancia prima **npm install**):
+
+```
+mvnw clean package -DskipTests
+
+```
+
+Per lanciarlo esegui:
+
+```
+java -jar target/*.jar
 ```
 
 **N.B. Sui sistemi Unix-like devi lanciare ./mvnw**
