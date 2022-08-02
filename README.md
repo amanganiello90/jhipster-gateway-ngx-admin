@@ -10,26 +10,39 @@ This application is configured for Service Discovery and Configuration with . On
 Il progetto è stato inizialmente generato con jhipster skippando il client (con auth2 e i18n).
 Lo scopo di questo poc è di innestare **ngx-admin 8.0.0**. Inoltre sono state rimosse dipendenze di test e task (jasmine e karma non usate per assenza di file .spec)
 
-## Feature testate
+## Feature testate (npm 6.14.15 e node 14.18.0)
 
-* client separato dal backend (Per una volta lancia prima **npm install**)
+
+* client separato dal backend in modalità serve (Per una volta lancia prima **npm install**)
 
 ```
 npm run webapp:dev
 
 ```
 
+* client+backend in dev serve (Per una volta lancia prima **npm install**)
+
+```
+mvnw
+
+```
+
+**N.B. Sui sistemi Unix-like devi lanciare ./mvnw**
+
 ## File aggiunti 
 
 Di seguito le modifiche fatte dopo aver generato e inserita l'app ngx-admin:
 
-* aggiunta src/main/webapp
+* aggiunta src/main/webapp (con ngx-admin di sana pianta, tranne per alcuni file spostati nella root)
 * modificato package.json
 * aggiunta .browserslistrc
 * aggiunta e modificato	angular.json
 * aggiunta e modificato tsconfig.app.json
 * aggiunta e modificato tsconfig.json
 * aggiunta tslint.json
+* modificato pom.xml
+* modificato src/main/java/com/gateway/skipclient/config/SecurityConfiguration.java
+* aggiunta src/main/resources/static (inserito file .gitkeep per committare cartella)
 
 ## Eventuali aggiunte
 
@@ -44,6 +57,8 @@ Dopo la login
 <div align="center">
 		<img src="https://raw.githubusercontent.com/amanganiello90/jhipster-gateway-ngx-admin/feature/ngx/after-login.png">
 </div>
+
+Inoltre bisogna innestare sul lato client le chiamate a oauth2 (esempio su keycloak)
 
 ## Project Structure
 

@@ -97,6 +97,8 @@ public class SecurityConfiguration {
                 .frameOptions().mode(Mode.DENY)
         .and()
             .authorizeExchange()
+            .pathMatchers("/").permitAll()
+            .pathMatchers("/*.*").permitAll()
             .pathMatchers("/api/authenticate").permitAll()
             .pathMatchers("/api/auth-info").permitAll()
             .pathMatchers("/api/admin/**").hasAuthority(AuthoritiesConstants.ADMIN)

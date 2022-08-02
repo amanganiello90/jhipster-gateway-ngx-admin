@@ -3,7 +3,8 @@
   "compilerOptions": {
     "importHelpers": true,
     "module": "es2020",
-    "outDir": "./dist/out-tsc",
+    "baseUrl": "src/main/webapp/",
+    "outDir": "./target/classes/static/",
     "sourceMap": true,
     "declaration": false,
     "moduleResolution": "node",
