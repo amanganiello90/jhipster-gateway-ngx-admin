@@ -57,6 +57,9 @@ Di seguito le modifiche fatte dopo aver generato e inserita l'app ngx-admin:
 * modificato src/main/java/com/gateway/skipclient/config/SecurityConfiguration.java
 * aggiunta src/main/resources/static (inserito file .gitkeep per committare cartella)
 * modificato .gitignore
+* modificato   src/main/webapp/app/app-routing.module.ts
+* modificato   src/main/webapp/app/app.module.ts
+* modificato  src/main/webapp/app/config/translation.config.ts
 
 ## Eventuali aggiunte
 

@@ -13,7 +13,7 @@ import { AccountService } from 'app/core/auth/account.service';
 import { ProfileService } from 'app/layouts/profiles/profile.service';
 import { LoginService } from 'app/login/login.service';
 
-import { NavbarComponent } from './navbar.component';
+import { NavbarComponent } from './navbar.component.ts';
 
 describe('Navbar Component', () => {
   let comp: NavbarComponent;

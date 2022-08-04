@@ -10,4 +10,7 @@
 
 export const environment = {
   production: false,
+  SERVER_API_URL: '',
+  I18N_HASH: 'generated_hash',
+  DEBUG_INFO_ENABLED: true,
 };
