@@ -39,6 +39,10 @@ import { COSMIC_THEME } from './styles/theme.cosmic';
 import { CORPORATE_THEME } from './styles/theme.corporate';
 import { DARK_THEME } from './styles/theme.dark';
 
+// aggiunta
+import { SharedModule } from 'app/shared/shared.module';
+
+
 const NB_MODULES = [
   NbLayoutModule,
   NbMenuModule,
@@ -52,6 +56,7 @@ const NB_MODULES = [
   NbSelectModule,
   NbIconModule,
   NbEvaIconsModule,
+  SharedModule
 ];
 const COMPONENTS = [
   HeaderComponent,

@@ -6,6 +6,21 @@ import { LayoutService } from '../../../@core/utils';
 import { map, takeUntil } from 'rxjs/operators';
 import { Subject } from 'rxjs';
 
+// aggiunta
+import { FormControl } from '@angular/forms';
+
+import { Router } from '@angular/router';
+import { TranslateService } from '@ngx-translate/core';
+import { SessionStorageService } from 'ngx-webstorage';
+
+import { VERSION } from 'app/app.constants';
+import { LANGUAGES } from 'app/config/language.constants';
+import { Account } from 'app/core/auth/account.model';
+import { AccountService } from 'app/core/auth/account.service';
+import { LoginService } from 'app/login/login.service';
+import { ProfileService } from 'app/layouts/profiles/profile.service';
+import { EntityNavbarItems } from 'app/entities/entity-navbar-items';
+
 @Component({
   selector: 'ngx-header',
   styleUrls: ['./header.component.scss'],
@@ -16,6 +31,21 @@ export class HeaderComponent implements OnInit, OnDestroy {
   private destroy$: Subject<void> = new Subject<void>();
   userPictureOnly: boolean = false;
   user: any;
+
+  // aggiunta
+  inProduction?: boolean;
+  isNavbarCollapsed = true;
+  languages = LANGUAGES;
+  openAPIEnabled?: boolean;
+  version = '';
+  account: Account | null = null;
+  entitiesNavbarItems: any[] = [];
+
+  entitiesSelectControl=new FormControl('');
+  adminSelectControl=new FormControl('');
+  accountSelectControl=new FormControl('');
+
+  //
 
   themes = [
     {
@@ -45,10 +75,33 @@ export class HeaderComponent implements OnInit, OnDestroy {
               private themeService: NbThemeService,
               private userService: UserData,
               private layoutService: LayoutService,
-              private breakpointService: NbMediaBreakpointsService) {
+              private breakpointService: NbMediaBreakpointsService,
+              // aggiunta
+              private loginService: LoginService,
+              private translateService: TranslateService,
+              private sessionStorageService: SessionStorageService,
+              private accountService: AccountService,
+              private profileService: ProfileService,
+              private router: Router
+              ) {
+              if (VERSION) {
+                  this.version = VERSION.toLowerCase().startsWith('v') ? VERSION : `v${VERSION}`;
+              }
   }
 
   ngOnInit() {
+    // aggiunta
+    this.entitiesNavbarItems = EntityNavbarItems;
+    this.profileService.getProfileInfo().subscribe(profileInfo => {
+      this.inProduction = profileInfo.inProduction;
+      this.openAPIEnabled = profileInfo.openAPIEnabled;
+    });
+
+    this.accountService.getAuthenticationState().subscribe(account => {
+      this.account = account;
+    });
+   //
+
     this.currentTheme = this.themeService.currentTheme;
 
     this.userService.getUsers()
@@ -71,6 +124,7 @@ export class HeaderComponent implements OnInit, OnDestroy {
       .subscribe(themeName => this.currentTheme = themeName);
   }
 
+
   ngOnDestroy() {
     this.destroy$.next();
     this.destroy$.complete();
@@ -91,4 +145,40 @@ export class HeaderComponent implements OnInit, OnDestroy {
     this.menuService.navigateHome();
     return false;
   }
+
+  // aggiunta
+
+  goToEntityPages(entityName: string) {
+   this.entitiesSelectControl.reset('');
+  }
+  goToAdminPages(adminPath: string) {
+    this.adminSelectControl.reset('');
+    this.router.navigate([adminPath]);
+  }
+
+  performLoginOrLogout(loginOrLogout: string) {
+    this.accountSelectControl.reset('');
+    if(loginOrLogout==='login'){
+      this.login();
+    }
+    else {
+      this.logout();
+    }
+  }
+
+  changeLanguage(languageKey: string): void {
+    this.sessionStorageService.store('locale', languageKey);
+    this.translateService.use(languageKey);
+  }
+
+
+  login(): void {
+    this.loginService.login();
+  }
+
+  logout(): void {
+    this.loginService.logout();
+    this.router.navigate(['']);
+  }
+//
 }

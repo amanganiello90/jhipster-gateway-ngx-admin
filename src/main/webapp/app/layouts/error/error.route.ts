@@ -29,5 +29,6 @@ export const errorRoute: Routes = [
   {
     path: '**',
     redirectTo: '/404',
-  },
+  }
+  
 ];
