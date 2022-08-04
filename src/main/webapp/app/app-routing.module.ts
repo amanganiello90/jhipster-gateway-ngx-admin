@@ -10,14 +10,14 @@ import {
 } from '@nebular/auth';
 
 // aggiunta
+import { DEBUG_INFO_ENABLED } from 'app/app.constants';
 import { errorRoute } from './layouts/error/error.route';
-import { environment } from './../environments/environment';
 import { Authority } from 'app/config/authority.constants';
 import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
 
 export const routes: Routes = [
   {
-    path: 'pages',
+    path: '',
     loadChildren: () => import('./pages/pages.module')
       .then(m => m.PagesModule),
   },
@@ -51,8 +51,8 @@ export const routes: Routes = [
       },
     ],
   },
-  { path: '', redirectTo: 'pages', pathMatch: 'full' },
-  { path: '**', redirectTo: 'pages' },
+ // { path: '', redirectTo: 'pages', pathMatch: 'full' },
+ // { path: '**', redirectTo: 'pages' },
   // aggiunta
   {
     path: 'admin',
@@ -71,7 +71,7 @@ export const routes: Routes = [
 
 const config: ExtraOptions = {
   useHash: false,
-  enableTracing: environment.DEBUG_INFO_ENABLED
+  enableTracing: DEBUG_INFO_ENABLED
 };
 
 @NgModule({

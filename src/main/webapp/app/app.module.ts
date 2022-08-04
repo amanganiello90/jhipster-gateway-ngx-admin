@@ -23,7 +23,6 @@ import {
 
 
 // aggiunta
-import { environment } from './../environments/environment';
 import { LOCALE_ID } from '@angular/core';
 import { registerLocaleData } from '@angular/common';
 import locale from '@angular/common/locales/it';
@@ -83,7 +82,7 @@ import { ErrorComponent } from './layouts/error/error.component';
 })
 export class AppModule {
   constructor(applicationConfigService: ApplicationConfigService, iconLibrary: FaIconLibrary, dpConfig: NgbDatepickerConfig) {
-    applicationConfigService.setEndpointPrefix(environment.SERVER_API_URL);
+    applicationConfigService.setEndpointPrefix(SERVER_API_URL);
     registerLocaleData(locale);
     iconLibrary.addIcons(...fontAwesomeIcons);
     dpConfig.minDate = { year: dayjs().subtract(100, 'year').year(), month: 1, day: 1 };

@@ -73,10 +73,10 @@ const routes: Routes = [{
       redirectTo: 'dashboard',
       pathMatch: 'full',
     },
-    {
+   /* {
       path: '**',
       component: NotFoundComponent,
-    },
+    },*/
   ],
 }];
 

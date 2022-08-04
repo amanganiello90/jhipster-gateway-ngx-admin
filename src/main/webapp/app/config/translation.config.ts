@@ -4,10 +4,6 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export const translationNotFoundMessage = 'translation-not-found';
 
-// aggiunta
-import { environment } from '../../environments/environment';
-
-
 export class MissingTranslationHandlerImpl implements MissingTranslationHandler {
   handle(params: MissingTranslationHandlerParams): string {
     const key = params.key;
@@ -16,7 +12,7 @@ export class MissingTranslationHandlerImpl implements MissingTranslationHandler 
 }
 
 export function translatePartialLoader(http: HttpClient): TranslateLoader {
-  return new TranslateHttpLoader(http, 'i18n/', `.json?_=${environment.I18N_HASH}`);
+  return new TranslateHttpLoader(http, 'i18n/', `.json?_=${I18N_HASH}`);
 }
 
 export function missingTranslationHandler(): MissingTranslationHandler {

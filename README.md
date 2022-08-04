@@ -60,6 +60,7 @@ Di seguito le modifiche fatte dopo aver generato e inserita l'app ngx-admin:
 * modificato   src/main/webapp/app/app-routing.module.ts
 * modificato   src/main/webapp/app/app.module.ts
 * modificato  src/main/webapp/app/config/translation.config.ts
+* aggiunta con modifica cartella webpack
 
 ## Eventuali aggiunte
 

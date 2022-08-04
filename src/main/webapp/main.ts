@@ -7,9 +7,10 @@ import { enableProdMode } from '@angular/core';
 import { platformBrowserDynamic } from '@angular/platform-browser-dynamic';
 
 import { AppModule } from './app/app.module';
-import { environment } from './environments/environment';
+import { DEBUG_INFO_ENABLED } from './app/app.constants';
 
-if (environment.production) {
+// disable debug data on prod profile to improve performance
+if (!DEBUG_INFO_ENABLED) {
   enableProdMode();
 }
 
