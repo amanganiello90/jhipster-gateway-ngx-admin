@@ -1,7 +1,11 @@
-import {Component, OnDestroy} from '@angular/core';
+import {Component, OnInit, OnDestroy} from '@angular/core';
 import { NbThemeService } from '@nebular/theme';
 import { takeWhile } from 'rxjs/operators' ;
 import { SolarData } from '../../@core/data/solar';
+
+// Aggiunta
+import { AccountService } from 'app/core/auth/account.service';
+import { Account } from 'app/core/auth/account.model';
 
 interface CardSettings {
   title: string;
@@ -14,7 +18,10 @@ interface CardSettings {
   styleUrls: ['./dashboard.component.scss'],
   templateUrl: './dashboard.component.html',
 })
-export class DashboardComponent implements OnDestroy {
+export class DashboardComponent implements OnInit,OnDestroy {
+
+  // aggiunta
+  account: Account | null = null;
 
   private alive = true;
 
@@ -78,7 +85,8 @@ export class DashboardComponent implements OnDestroy {
     dark: this.commonStatusCardsSet,
   };
 
-  constructor(private themeService: NbThemeService,
+  constructor(private accountService: AccountService,
+    private themeService: NbThemeService,
               private solarService: SolarData) {
     this.themeService.getJsTheme()
       .pipe(takeWhile(() => this.alive))
@@ -91,6 +99,9 @@ export class DashboardComponent implements OnDestroy {
       .subscribe((data) => {
         this.solarValue = data;
       });
+  }
+  ngOnInit(): void {
+    //this.accountService.identity().subscribe(account => (this.account = account));
   }
 
   ngOnDestroy() {

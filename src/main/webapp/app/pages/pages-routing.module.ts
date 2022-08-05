@@ -5,11 +5,17 @@ import { PagesComponent } from './pages.component';
 import { DashboardComponent } from './dashboard/dashboard.component';
 import { ECommerceComponent } from './e-commerce/e-commerce.component';
 import { NotFoundComponent } from './miscellaneous/not-found/not-found.component';
+import { Authority } from 'app/config/authority.constants';
+import { UserRouteAccessService } from 'app/core/auth/user-route-access.service';
 
 const routes: Routes = [{
   path: '',
   component: PagesComponent,
   children: [
+    {
+      path: '',
+      component: ECommerceComponent,
+    },
     {
       path: 'dashboard',
       component: ECommerceComponent,
@@ -68,7 +74,7 @@ const routes: Routes = [{
       loadChildren: () => import('./miscellaneous/miscellaneous.module')
         .then(m => m.MiscellaneousModule),
     },
-    {
+   /* {
       path: '',
       redirectTo: 'dashboard',
       pathMatch: 'full',
@@ -77,7 +83,20 @@ const routes: Routes = [{
       path: '**',
       component: NotFoundComponent,
     },*/
-  ],
+    {
+      path: 'admin',
+      data: {
+        authorities: [Authority.ADMIN],
+      },
+      canActivate: [UserRouteAccessService],
+      loadChildren: () => import('../admin/admin-routing.module').then(m => m.AdminRoutingModule),
+    },
+    {
+      path: '',
+      loadChildren: () => import(`../entities/entity-routing.module`).then(m => m.EntityRoutingModule),
+    },
+  ]
+  ,
 }];
 
 @NgModule({

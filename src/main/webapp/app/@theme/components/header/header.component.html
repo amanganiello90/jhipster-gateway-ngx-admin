@@ -24,16 +24,16 @@
   </a>
 </div>
 
-<div class="header-container"> 
+<div class="header-container" *ngIf="account !== null" > 
 
   <nb-select [formControl]="entitiesSelectControl" status="primary"  (selectedChange)="goToEntityPages($event)">
     <nb-option value="" hidden> 
           <nb-icon  icon="alert-circle-outline"></nb-icon>
       <span jhiTranslate="global.menu.entities.main">Entities</span>
     </nb-option>
-    <nb-option value="1">Option 1 value</nb-option>
-    <nb-option value="2">op 2 not null value</nb-option>
-    <nb-option value="3">Option 3</nb-option>
+    <nb-option value="invoice">*Invoice</nb-option>
+    <nb-option value="notification">*Notification</nb-option>
+     <!-- jhipster-needle-add-entity-to-menu - JHipster will add entities to the menu here -->
   </nb-select>
 </div> 
 
@@ -64,13 +64,23 @@
 </nb-select>
 </div> 
 
+<div class="header-container" *ngIf="languages && languages.length > 1"> 
+  <nb-select [jhiActiveMenu]="language" [formControl]="languageSelectControl" status="primary"  (selectedChange)="changeLanguage($event)">
+    <nb-option value="" hidden> 
+          <nb-icon  icon="alert-circle-outline"></nb-icon>
+          <span jhiTranslate="global.menu.language">Language</span>
+    </nb-option>
+    <nb-option  *ngFor="let language of languages" [value]="language"> {{ language }}</nb-option>
+  </nb-select>
+  </div> 
+
 <div class="header-container"> 
   <nb-select [formControl]="accountSelectControl" status="primary"  (selectedChange)="performLoginOrLogout($event)">
     <nb-option value="" hidden> 
           <nb-icon  icon="alert-circle-outline"></nb-icon>
         <span jhiTranslate="global.menu.account.main">Account</span>
     </nb-option>
-    <nb-option *ngIf="account" value="logout">
+    <nb-option *ngIf="account !== null" value="logout">
       <span jhiTranslate="global.menu.account.logout">Sign out</span>
     </nb-option>
     <nb-option *ngIf="!account" value="login">
@@ -79,7 +89,7 @@
   </nb-select>
   </div> 
 
-
+<!--
 <div class="header-container">
   <nb-actions size="small">
    
@@ -94,4 +104,5 @@
     </nb-action>
   </nb-actions>
 </div>
+-->
 

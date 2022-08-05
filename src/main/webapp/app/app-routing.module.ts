@@ -54,7 +54,7 @@ export const routes: Routes = [
   //{ path: '', redirectTo: 'pages', pathMatch: 'full' },
  // { path: '**', redirectTo: 'pages' },
   // aggiunta
-  {
+  /*{
     path: 'admin',
     data: {
       authorities: [Authority.ADMIN],
@@ -66,6 +66,7 @@ export const routes: Routes = [
     path: '',
     loadChildren: () => import(`./entities/entity-routing.module`).then(m => m.EntityRoutingModule),
   },
+  */
   ...errorRoute,
 ];
 
